@@ -147,17 +147,18 @@ function GeraTabelaVerdade() {
     while (campoValorChaves.includes(operador)) {
       for (let i = 0; i < campoValorChaves.length; i++) {
         if (campoValorChaves[i] === operador) {
+          const anterior = campoValorChaves
+            .slice(0, i)
+            .match(/\[([^\[\]]*)\](?!.*\[[^\[\]]*\])/g);
+          const proximo = campoValorChaves.slice(i).match(/\[([^\[\]]*)\]/g)[0];
+          const expressao = anterior + operador + proximo;
           tabelaVerdade.push({
             alias: "[" + indexChave + "]",
-            valor: campoValorChaves.substring(i - 3, i + 4),
-            resultado: geraResultado(
-              campoValorChaves.substring(i - 3, i + 4),
-              operador,
-              tabelaVerdade
-            ),
+            valor: expressao,
+            resultado: geraResultado(expressao, operador, tabelaVerdade),
           });
           campoValorChaves = campoValorChaves.replace(
-            campoValorChaves.substring(i - 3, i + 4),
+            expressao,
             "[" + indexChave + "]"
           );
           indexChave++;
@@ -169,15 +170,24 @@ function GeraTabelaVerdade() {
   document.getElementById("titulo-resultado").innerHTML = campoValor;
   document.getElementById("card-resultado").classList.remove("d-none");
 
+  replaceAlias(tabelaVerdade);
+
   // montando a head da tabela usando a info valor do array tabela verdade
   var inner_head = "";
-  for (let i = 0; i < tabelaVerdade.length; i++) {
-    inner_head +=
-      "<th>" +
-      tabelaVerdade[i].alias +
-      "</br>" +
-      tabelaVerdade[i].valor +
-      "</th>";
+  var mostrarAlias = document.getElementById("checkboxAlias").checked;
+  if (mostrarAlias) {
+    for (let i = 0; i < tabelaVerdade.length; i++) {
+      inner_head +=
+        "<th>" +
+        tabelaVerdade[i].alias +
+        "</br>" +
+        tabelaVerdade[i].valor +
+        "</th>";
+    }
+  } else {
+    for (let i = 0; i < tabelaVerdade.length; i++) {
+      inner_head += "<th>" + tabelaVerdade[i].display + "</th>";
+    }
   }
 
   var inner_body = "";
@@ -222,11 +232,11 @@ function geraVFProposicaoNegada(negacao, tabelaVerdade) {
 
 function geraResultado(subExpressao, operador, tabelaVerdade) {
   let resultados = [];
-  var valores = subExpressao.match(/\[\d+\]/g);
-  var proposicao1 = tabelaVerdade.find(
+  let valores = subExpressao.match(/\[\d+\]/g);
+  let proposicao1 = tabelaVerdade.find(
     (proposicao1) => proposicao1.alias === valores[0]
   );
-  var proposicao2 = tabelaVerdade.find(
+  let proposicao2 = tabelaVerdade.find(
     (proposicao2) => proposicao2.alias === valores[1]
   );
   proposicao1.resultado.forEach((resultado, i) => {
@@ -236,6 +246,14 @@ function geraResultado(subExpressao, operador, tabelaVerdade) {
         break;
       case "∨":
         resultados.push(resultado || proposicao2.resultado[i]);
+        break;
+      case "⊕":
+        resultados.push(
+          !(
+            (resultado && proposicao2.resultado[i]) ||
+            (!resultado && !proposicao2.resultado[i])
+          )
+        );
         break;
       case "→":
         resultados.push(
@@ -248,16 +266,24 @@ function geraResultado(subExpressao, operador, tabelaVerdade) {
             (!resultado && !proposicao2.resultado[i])
         );
         break;
-      case "⊕":
-        resultados.push(
-          !(
-            (resultado && proposicao2.resultado[i]) ||
-            (!resultado && !proposicao2.resultado[i])
-          )
-        );
-        break;
     }
   });
 
   return resultados;
+}
+
+function replaceAlias(tabelaVerdade) {
+  tabelaVerdade.forEach((expressao, i) => {
+    var display = expressao.valor;
+    if (display.includes("[")) {
+      var valores = display.match(/\[\d+\]/g);
+      valores.forEach((valor) => {
+        let proposicoes = tabelaVerdade.find(
+          (proposicao) => proposicao.alias === valor
+        );
+        display = display.replace(valor, proposicoes.display);
+      });
+    }
+    expressao.display = display;
+  });
 }
