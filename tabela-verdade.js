@@ -1,4 +1,6 @@
 let campoExpressao = null;
+let contadorChave = 0;
+let tabelaVerdade = [];
 
 //#region Regex
 const RegexApenasProposicoes = /([A-Z])(?=.*\1)|[^A-Z]/g;
@@ -30,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //#endregion
 });
 
-//#region Ações de botões exceto resultado
+//#region Ações Tecladas
 function AdicionaPreposicao() {
   campoExpressao.value += this.innerHTML;
 }
@@ -53,40 +55,38 @@ function Deletar() {
 //#endregion
 
 function GeraTabelaVerdade() {
-  let indexChave = 0;
   let campoValorChaves = campoExpressao.value;
-  const campoValor = campoExpressao.value;
-  const apenasProposicoes = campoValor.replace(RegexApenasProposicoes, "");
-  const proposicoes = apenasProposicoes.split("");
-  const tabelaVerdade = [];
-  const qtdeProposicoes = apenasProposicoes.length;
-  const qtdeLinhas = Math.pow(2, parseFloat(qtdeProposicoes));
+  const proposicoesLista = campoExpressao.value
+    .replace(RegexApenasProposicoes, "")
+    .split("");
+  const qtdeProposicoes = proposicoesLista.length;
+  const qtdeLinhasTabela = Math.pow(2, parseFloat(qtdeProposicoes));
 
   //Adiciona proposições
-  proposicoes.forEach((proposicao, index) => {
+  proposicoesLista.forEach((proposicao, index) => {
     tabelaVerdade.push({
-      alias: "[" + indexChave + "]",
+      alias: "[" + contadorChave + "]",
       valor: proposicao,
-      resultado: geraVFProposicao(index, qtdeLinhas, qtdeProposicoes),
+      resultado: geraVFProposicao(index, qtdeLinhasTabela, qtdeProposicoes),
     });
     campoValorChaves = campoValorChaves
       .split(proposicao)
-      .join("[" + indexChave + "]");
-    indexChave++;
+      .join("[" + contadorChave + "]");
+    contadorChave++;
   });
 
   //Se há negação de preposição, adiciona a negação na tabela
   if (campoValorChaves.match(RegexNegacaoProposicoes)) {
     campoValorChaves.match(RegexNegacaoProposicoes).forEach((negacao) => {
       tabelaVerdade.push({
-        alias: "[" + indexChave + "]",
+        alias: "[" + contadorChave + "]",
         valor: negacao,
         resultado: geraVFProposicaoNegada(negacao, tabelaVerdade),
       });
       campoValorChaves = campoValorChaves
         .split(negacao)
-        .join("[" + indexChave + "]");
-      indexChave++;
+        .join("[" + contadorChave + "]");
+      contadorChave++;
     });
   }
 
@@ -94,7 +94,7 @@ function GeraTabelaVerdade() {
   if (campoValorChaves.match(RegexNegacoesParenteses)) {
     campoValorChaves.match(RegexNegacoesParenteses).forEach((negacao) => {
       tabelaVerdade.push({
-        alias: "[" + indexChave + "]",
+        alias: "[" + contadorChave + "]",
         valor: negacao.substring(1),
         resultado: geraResultado(
           negacao,
@@ -104,21 +104,21 @@ function GeraTabelaVerdade() {
       });
       campoValorChaves = campoValorChaves.replace(
         negacao.substring(1),
-        "[" + indexChave + "]"
+        "[" + contadorChave + "]"
       );
       tabelaVerdade.push({
-        alias: "[" + (indexChave + 1) + "]",
+        alias: "[" + (contadorChave + 1) + "]",
         valor: negacao,
         resultado: geraVFProposicaoNegada(
-          "[" + indexChave + "]",
+          "[" + contadorChave + "]",
           tabelaVerdade
         ),
       });
       campoValorChaves = campoValorChaves.replace(
-        "~[" + indexChave + "]",
-        "[" + (indexChave + 1) + "]"
+        "~[" + contadorChave + "]",
+        "[" + (contadorChave + 1) + "]"
       );
-      indexChave += 2;
+      contadorChave += 2;
     });
   }
 
@@ -126,7 +126,7 @@ function GeraTabelaVerdade() {
   if (campoValorChaves.match(RegexEntreParenteses)) {
     campoValorChaves.match(RegexEntreParenteses).forEach((expressao) => {
       tabelaVerdade.push({
-        alias: "[" + indexChave + "]",
+        alias: "[" + contadorChave + "]",
         valor: expressao,
         resultado: geraResultado(
           expressao,
@@ -136,9 +136,9 @@ function GeraTabelaVerdade() {
       });
       campoValorChaves = campoValorChaves.replace(
         expressao,
-        "[" + indexChave + "]"
+        "[" + contadorChave + "]"
       );
-      indexChave++;
+      contadorChave++;
     });
   }
 
@@ -153,47 +153,47 @@ function GeraTabelaVerdade() {
           const proximo = campoValorChaves.slice(i).match(/\[([^\[\]]*)\]/g)[0];
           const expressao = anterior + operador + proximo;
           tabelaVerdade.push({
-            alias: "[" + indexChave + "]",
+            alias: "[" + contadorChave + "]",
             valor: expressao,
             resultado: geraResultado(expressao, operador, tabelaVerdade),
           });
           campoValorChaves = campoValorChaves.replace(
             expressao,
-            "[" + indexChave + "]"
+            "[" + contadorChave + "]"
           );
-          indexChave++;
+          contadorChave++;
         }
       }
     }
   });
 
-  document.getElementById("titulo-resultado").innerHTML = campoValor;
+  substituiAlias(tabelaVerdade);
+
+  //#region Monta Tabela
+  let inner_head = "";
+  let inner_body = "";
+  let tamanhoTabelaVerdade = tabelaVerdade.length;
+  let mostrarAlias = document.getElementById("checkboxAlias").checked;
+
+  document.getElementById("titulo-resultado").innerHTML = campoExpressao.value;
   document.getElementById("card-resultado").classList.remove("d-none");
 
-  replaceAlias(tabelaVerdade);
-
-  // montando a head da tabela usando a info valor do array tabela verdade
-  var inner_head = "";
-  var mostrarAlias = document.getElementById("checkboxAlias").checked;
-  if (mostrarAlias) {
-    for (let i = 0; i < tabelaVerdade.length; i++) {
+  for (let i = 0; i < tamanhoTabelaVerdade; i++) {
+    if (mostrarAlias) {
       inner_head +=
         "<th>" +
         tabelaVerdade[i].alias +
         "</br>" +
         tabelaVerdade[i].valor +
         "</th>";
-    }
-  } else {
-    for (let i = 0; i < tabelaVerdade.length; i++) {
+    } else {
       inner_head += "<th>" + tabelaVerdade[i].display + "</th>";
     }
   }
 
-  var inner_body = "";
-  for (let i = 0; i < qtdeLinhas; i++) {
+  for (let i = 0; i < qtdeLinhasTabela; i++) {
     inner_body += "<tr>";
-    for (var j = 0; j < tabelaVerdade.length; j++) {
+    for (let j = 0; j < tamanhoTabelaVerdade; j++) {
       inner_body +=
         "<td>" + (tabelaVerdade[j]?.resultado[i] ? "V" : "F") + "</td>";
     }
@@ -203,9 +203,15 @@ function GeraTabelaVerdade() {
   document.querySelectorAll("thead")[0].innerHTML =
     "<tr>" + inner_head + "</tr>";
   document.querySelectorAll("tbody")[0].innerHTML = inner_body;
+  //#endregion
 
   console.log(tabelaVerdade);
   console.log(campoValorChaves);
+
+  //#region Reseta index e tabela
+  tabelaVerdade = [];
+  contadorChave = 0;
+  //#endregion
 }
 
 function geraVFProposicao(index, totalLinhas, totalColunas) {
@@ -272,7 +278,7 @@ function geraResultado(subExpressao, operador, tabelaVerdade) {
   return resultados;
 }
 
-function replaceAlias(tabelaVerdade) {
+function substituiAlias(tabelaVerdade) {
   tabelaVerdade.forEach((expressao, i) => {
     var display = expressao.valor;
     if (display.includes("[")) {
