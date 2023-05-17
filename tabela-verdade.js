@@ -37,15 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //#region Ações Tecladas
 function AdicionaPreposicao() {
-  campoExpressao.value += this.innerHTML;
+  campoExpressao.value += this.innerHTML.trim();
 }
 
 function AdicionaOperadores() {
-  campoExpressao.value += this.innerHTML;
+  campoExpressao.value += this.innerHTML.trim();
 }
 
 function AdicionaParenteses() {
-  campoExpressao.value += this.innerHTML;
+  campoExpressao.value += this.innerHTML.trim();
 }
 
 function Limpar() {
