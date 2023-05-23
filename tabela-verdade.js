@@ -91,29 +91,25 @@ function GeraTabelaVerdade() {
   let inner_head = "";
   let inner_body = "";
   let tamanhoTabelaVerdade = tabelaVerdade.length;
-  let mostrarAlias = document.getElementById("checkboxAlias").checked;
+  let mostrarValorVF = document.getElementById("checkboxValor").checked;
 
   document.getElementById("titulo-resultado").innerHTML = campoExpressao.value;
   document.getElementById("card-resultado").classList.remove("d-none");
 
   for (let i = 0; i < tamanhoTabelaVerdade; i++) {
-    if (mostrarAlias) {
-      inner_head +=
-        "<th>" +
-        tabelaVerdade[i].alias +
-        "</br>" +
-        tabelaVerdade[i].valor +
-        "</th>";
-    } else {
-      inner_head += "<th>" + tabelaVerdade[i].display + "</th>";
-    }
+    inner_head += "<th>" + tabelaVerdade[i].display + "</th>";
   }
 
   for (let i = 0; i < qtdeLinhasTabela; i++) {
+    let resultadoTrue = mostrarValorVF ? "V" : 1;
+    let resultadoFalse = mostrarValorVF ? "F" : 0;
+
     inner_body += "<tr>";
     for (let j = 0; j < tamanhoTabelaVerdade; j++) {
       inner_body +=
-        "<td>" + (tabelaVerdade[j]?.resultado[i] ? "V" : "F") + "</td>";
+        "<td>" +
+        (tabelaVerdade[j]?.resultado[i] ? resultadoTrue : resultadoFalse) +
+        "</td>";
     }
     inner_body += "</tr>";
   }
@@ -122,6 +118,8 @@ function GeraTabelaVerdade() {
     "<tr>" + inner_head + "</tr>";
   document.querySelectorAll("tbody")[0].innerHTML = inner_body;
   //#endregion
+
+  //console.log(tabelaVerdade);
 
   //#region Reseta index e tabela
   tabelaVerdade = [];
