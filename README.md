@@ -8,4 +8,3 @@ Novos recursos, correção de bugs e otimizações de desempenho estão em plane
 1. Informe a expressão lógica desejada.
 2. Clique no botão RES.
 3. Uma tabela com o resultado será gerada e mostrada abaixo da área de inserção de expressão lógica.
-- Mais detalhes a respeito de formato e funcionamento estão na página principal da aplicação.
