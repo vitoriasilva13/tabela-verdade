@@ -62,7 +62,8 @@ function GeraTabelaVerdade() {
 
   const proposicoesLista = campoExpressaoValorParaResultado
     .replace(RegexApenasProposicoes, "")
-    .split("");
+    .split("")
+    .sort();
   const qtdeProposicoes = proposicoesLista.length;
   const qtdeLinhasTabela = Math.pow(2, parseFloat(qtdeProposicoes));
 
@@ -91,7 +92,7 @@ function GeraTabelaVerdade() {
   let inner_head = "";
   let inner_body = "";
   let tamanhoTabelaVerdade = tabelaVerdade.length;
-  let mostrarValorVF = document.getElementById("checkboxValor").checked;
+  let mostrarValorVF = true; //document.getElementById("checkboxValor").checked;
 
   document.getElementById("titulo-resultado").innerHTML = campoExpressao.value;
   document.getElementById("card-resultado").classList.remove("d-none");
@@ -101,8 +102,8 @@ function GeraTabelaVerdade() {
   }
 
   for (let i = 0; i < qtdeLinhasTabela; i++) {
-    let resultadoTrue = mostrarValorVF ? "V" : 1;
-    let resultadoFalse = mostrarValorVF ? "F" : 0;
+    let resultadoTrue = mostrarValorVF ? 1 : "V";
+    let resultadoFalse = mostrarValorVF ? 0 : "F";
 
     inner_body += "<tr>";
     for (let j = 0; j < tamanhoTabelaVerdade; j++) {
@@ -117,6 +118,7 @@ function GeraTabelaVerdade() {
   document.querySelectorAll("thead")[0].innerHTML =
     "<tr>" + inner_head + "</tr>";
   document.querySelectorAll("tbody")[0].innerHTML = inner_body;
+  document.getElementById("anchor-scroll").click();
   //#endregion
 
   //console.log(tabelaVerdade);

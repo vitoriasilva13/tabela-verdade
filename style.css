@@ -1,0 +1,45 @@
+body {
+  background-color: #e2e3e5;
+  background: url("./cool-background.png") 100% / auto;
+  scroll-behavior: smooth;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+}
+
+#btnInfo {
+  right: -2rem;
+}
+
+tr > td:last-child {
+  font-weight: bold;
+  background-color: #e2e3e5;
+  border: 1px solid #cbccce;
+}
+
+th {
+  background-color: #e2e3e5;
+}
+
+@media print {
+  body {
+    visibility: hidden;
+    position: relative;
+  }
+  .header {
+    position: inherit;
+  }
+  .overflow-auto {
+    overflow: visible !important;
+  }
+  #card-resultado {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+  }
+  #tableContent {
+    visibility: visible;
+  }
+}
