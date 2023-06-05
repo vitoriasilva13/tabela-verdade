@@ -1,6 +1,6 @@
 body {
   background-color: #e2e3e5;
-  background: url("./cool-background.png") 100% / auto;
+  background: url("../img/cool-background.png") 100% / auto;
   scroll-behavior: smooth;
 }
 

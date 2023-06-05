@@ -92,7 +92,7 @@ function GeraTabelaVerdade() {
   let inner_head = "";
   let inner_body = "";
   let tamanhoTabelaVerdade = tabelaVerdade.length;
-  let mostrarValorVF = true; //document.getElementById("checkboxValor").checked;
+  let mostrarValorVF = false; //document.getElementById("checkboxValor").checked;
 
   document.getElementById("titulo-resultado").innerHTML = campoExpressao.value;
   document.getElementById("card-resultado").classList.remove("d-none");
