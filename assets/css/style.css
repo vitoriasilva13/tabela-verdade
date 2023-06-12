@@ -23,6 +23,22 @@ th {
   background-color: #e2e3e5;
 }
 
+.nav-pills {
+  margin-bottom: -0.4rem;
+  z-index: 999;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #0d6efd;
+  background-color: white;
+}
+
+.nav-pills .nav-link {
+  background-color: #0d6efd;
+  color: white;
+}
+
 @media print {
   body {
     visibility: hidden;
