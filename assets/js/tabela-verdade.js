@@ -58,6 +58,14 @@ function Deletar() {
 //#endregion
 
 function GeraTabelaVerdade() {
+  if (campoExpressao.value.length == 0) {
+    document.getElementById("alert-content").innerHTML =
+      "<div class='alert alert-warning alert-dismissible fade show position-absolute m-4' role='alert'" +
+      "style='width: 20rem; top: 0; right:0;'>É preciso informar uma expressão." +
+      "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>'";
+    return;
+  }
+
   campoExpressaoValorParaResultado = campoExpressao.value;
 
   const proposicoesLista = campoExpressaoValorParaResultado
