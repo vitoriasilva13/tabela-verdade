@@ -1,15 +1,16 @@
-# :date: Gerador de Tabela Verdade
+# Gerador de Tabela Verdade [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 Um gerador de tabela verdade feito com Javascript, HTML e CSS. Acesse em: https://vitoriasilva13.github.io/tabela-verdade/
 
-## :wrench: Ajustes e Melhorias
+## Ajustes e Melhorias
 Novos recursos, correção de bugs e otimizações de desempenho estão em planejamento. O projeto está em constante melhoria.
 
-## :bookmark_tabs: Uso
+## Uso
 1. Informe a expressão lógica desejada.
 2. Clique no botão RES.
 3. Uma tabela com o resultado será gerada e mostrada abaixo da área de inserção de expressão lógica.
 
-## Função ``geraVFProposicao()``
+## Código
+### Função ``geraVFProposicao()``
 
 Levando em consideração a forma de se dar valor para proposições de uma expressão lógica e montar uma tabela verdade, onde sabemos que, por exemplo, uma expressão com 3 proposições terá 8 linhas e seus valores terão que se intercalar no padrão:
 - Proposição 1 = 8/2
