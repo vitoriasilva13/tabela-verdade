@@ -30,4 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(function (body) {
       document.getElementById("pills-hist").innerHTML = body;
     });
+
+  var splashScreen = document.getElementsByClassName("splash")[0];
+  setDelay(1500).then(() => (splashScreen.style.opacity = "0"));
+  setDelay(6000).then(() => splashScreen.remove());
 });
+
+function setDelay(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
