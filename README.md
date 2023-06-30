@@ -1,5 +1,4 @@
 # Gerador de Tabela Verdade [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-Um gerador de tabela verdade feito com Javascript, HTML e CSS. Acesse em: https://vitoriasilva13.github.io/tabela-verdade/
 
 <hr>
 
