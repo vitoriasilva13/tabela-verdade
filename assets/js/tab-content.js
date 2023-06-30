@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   var splashScreen = document.getElementsByClassName("splash")[0];
   setDelay(1500).then(() => (splashScreen.style.opacity = "0"));
-  setDelay(6000).then(() => splashScreen.remove());
+  setDelay(2000).then(() => splashScreen.remove());
 });
 
 function setDelay(time) {
