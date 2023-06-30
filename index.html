@@ -19,114 +19,37 @@
   <div class="container d-flex align-items-center justify-content-center flex-column mt-3">
     <ul class="nav nav-pills" id="pills-tab" role="tablist" style="width: 20rem">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-main"
-          type="button" role="tab" aria-controls="pills-home" aria-selected="true"><i
-            class="fa-solid fa-calculator"></i></button>
+        <button class="nav-link active" id="pills-main-tab" data-bs-toggle="pill" data-bs-target="#pills-main"
+          type="button" role="tab" aria-controls="pills-main" aria-selected="true">
+          <i class="fa-solid fa-calculator"></i></button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-config"
-          type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><i
-            class="fa-solid fa-info-circle"></i></button>
+        <button class="nav-link" id="pills-info-tab" data-bs-toggle="pill" data-bs-target="#pills-info" type="button"
+          role="tab" aria-controls="pills-info" aria-selected="false">
+          <i class="fa-solid fa-info-circle"></i></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-config-tab" data-bs-toggle="pill" data-bs-target="#pills-config"
+          type="button" role="tab" aria-controls="pills-config" aria-selected="false">
+          <i class="fa-solid fa-cog"></i></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link recurso" id="pills-hist-tab" data-bs-toggle="pill" data-bs-target="#pills-hist"
+          type="button" role="tab" aria-controls="pills-hist" aria-selected="false">
+          <i class="fa-solid fa-clock-rotate-left"></i></button>
       </li>
     </ul>
     <div class="card shadow-lg mx-3" style="width: 20rem">
-      <div class="tab-content" id="pills-tabContent">
+      <div class="tab-content" id="pills-tab-content">
         <div class="tab-pane fade show active" id="pills-main" role="tabpanel" aria-labelledby="pills-main-tab"
           tabindex="0">
-          <div class="card-body mt-2">
-            <h5 class="card-title text-center">Gerador de Tabela Verdade</h5>
-            <p class="card-text text-justify">
-              Utilize o campo abaixo para informar a expressão lógica e gerar a tabela verdade.
-            </p>
-            <hr />
-            <input class="w-100 text-right" type="text" name="expressao" id="expressao" disabled />
-            <hr />
-            <div class="p-2">
-              <div class="row gap-2 mb-2">
-                <button class="btn btn-secondary col condicao">~</button>
-                <button class="btn btn-outline-secondary col parenteses">
-                  (
-                </button>
-                <button class="btn btn-outline-secondary col parenteses">
-                  )
-                </button>
-                <button id="limpar" onclick="Limpar()" class="btn btn-warning col">
-                  C
-                </button>
-                <button id="deletar" onclick="Deletar()" class="btn btn-danger col">
-                  DEL
-                </button>
-              </div>
-              <div class="d-flex flex-column mb-1">
-                <div class="row gap-2">
-                  <button class="btn btn-outline-secondary col parametro">
-                    A
-                  </button>
-                  <button class="btn btn-outline-secondary col parametro">
-                    B
-                  </button>
-                  <button class="btn btn-outline-secondary col parametro">
-                    C
-                  </button>
-                  <button class="btn btn-outline-secondary col parametro">
-                    D
-                  </button>
-                </div>
-                <div class="row gap-2 mt-1">
-                  <button class="btn btn-outline-secondary col parametro">
-                    E
-                  </button>
-                  <button class="btn btn-outline-secondary col parametro">
-                    F
-                  </button>
-                  <button class="btn btn-outline-secondary col parametro">
-                    G
-                  </button>
-                  <button class="btn btn-outline-secondary col parametro">
-                    H
-                  </button>
-                </div>
-                <div class="row gap-2 mt-1">
-                  <button class="btn btn-outline-secondary col parametro">
-                    I
-                  </button>
-                  <button class="btn btn-outline-secondary col parametro">
-                    J
-                  </button>
-                  <button class="btn btn-outline-secondary col parametro">
-                    K
-                  </button>
-                  <button class="btn btn-outline-secondary col parametro">
-                    L
-                  </button>
-                </div>
-              </div>
-              <div class="d-flex flex-column">
-                <div class="row gap-2">
-                  <button class="btn btn-secondary col condicao">^</button>
-                  <button class="btn btn-secondary col condicao">∨</button>
-                  <button class="btn btn-secondary col condicao">⊕</button>
-                </div>
-                <div class="row gap-2 mt-1">
-                  <button class="btn btn-secondary col condicao">→</button>
-                  <button class="btn btn-secondary col condicao">↔</button>
-                  <button id="resultado" onclick="GeraTabelaVerdade()" class="btn btn-success col">
-                    RES
-                  </button>
-                  <a id="anchor-scroll" class="d-none" href="#card-resultado"></a>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab" tabindex="0">
         </div>
         <div class="tab-pane fade" id="pills-config" role="tabpanel" aria-labelledby="pills-config-tab" tabindex="0">
-          ...
         </div>
-      </div>
-      <div id="btnInfo" class="position-absolute top-0 d-none">
-        <a class="btn btn-dark">
-          <i class="fas fa-cog small"></i>
-        </a>
+        <div class="tab-pane fade" id="pills-hist" role="tabpanel" aria-labelledby="pills-hist-tab" tabindex="0">
+        </div>
       </div>
     </div>
     <div id="card-resultado" class="card position-relative d-none shadow-lg col-12 my-5 ">
@@ -134,7 +57,7 @@
         <h5 id="titulo-resultado"></h5>
         <hr class="mb-0" />
         <div class="overflow-auto">
-          <table class="table table-hover table-sm table-bordered mb-0">
+          <table id="table-resposta" class="table table-hover table-sm table-bordered mb-0">
             <thead class="table-secondary header"></thead>
             <tbody></tbody>
           </table>
@@ -154,6 +77,7 @@
   <div id="alert-content" class="position-absolute" style="width: 20rem; top: 0; right:0;">
   </div>
   <script src="assets/js/tabela-verdade.js"></script>
+  <script src="assets/js/tab-content.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>

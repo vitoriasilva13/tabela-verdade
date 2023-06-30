@@ -100,7 +100,7 @@ function GeraTabelaVerdade() {
   let inner_head = "";
   let inner_body = "";
   let tamanhoTabelaVerdade = tabelaVerdade.length;
-  let mostrarValorVF = false; //document.getElementById("checkboxValor").checked;
+  let mostrarValorVF = document.getElementById("checkbox-valor").checked;
 
   document.getElementById("titulo-resultado").innerHTML = campoExpressao.value;
   document.getElementById("card-resultado").classList.remove("d-none");
@@ -123,9 +123,9 @@ function GeraTabelaVerdade() {
     inner_body += "</tr>";
   }
 
-  document.querySelectorAll("thead")[0].innerHTML =
+  document.querySelectorAll("#table-resposta thead")[0].innerHTML =
     "<tr>" + inner_head + "</tr>";
-  document.querySelectorAll("tbody")[0].innerHTML = inner_body;
+  document.querySelectorAll("#table-resposta tbody")[0].innerHTML = inner_body;
   document.getElementById("anchor-scroll").click();
   //#endregion
 

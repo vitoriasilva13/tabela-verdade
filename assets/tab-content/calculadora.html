@@ -1,0 +1,85 @@
+<div class="card-body">
+    <h5 class="card-title text-center mt-2">Gerador de Tabela Verdade</h5>
+    <p class="card-text text-justify">
+        Utilize o campo abaixo para informar a expressão lógica e gerar a tabela verdade.
+    </p>
+    <hr />
+    <input class="w-100 text-right" type="text" name="expressao" id="expressao" disabled />
+    <hr />
+    <div class="p-2">
+        <div class="row gap-2 mb-2">
+            <button class="btn btn-secondary col condicao">~</button>
+            <button class="btn btn-outline-secondary col parenteses">
+                (
+            </button>
+            <button class="btn btn-outline-secondary col parenteses">
+                )
+            </button>
+            <button id="limpar" onclick="Limpar()" class="btn btn-warning col">
+                C
+            </button>
+            <button id="deletar" onclick="Deletar()" class="btn btn-danger col">
+                DEL
+            </button>
+        </div>
+        <div class="d-flex flex-column mb-1">
+            <div class="row gap-2">
+                <button class="btn btn-outline-secondary col parametro">
+                    A
+                </button>
+                <button class="btn btn-outline-secondary col parametro">
+                    B
+                </button>
+                <button class="btn btn-outline-secondary col parametro">
+                    C
+                </button>
+                <button class="btn btn-outline-secondary col parametro">
+                    D
+                </button>
+            </div>
+            <div class="row gap-2 mt-1">
+                <button class="btn btn-outline-secondary col parametro">
+                    E
+                </button>
+                <button class="btn btn-outline-secondary col parametro">
+                    F
+                </button>
+                <button class="btn btn-outline-secondary col parametro">
+                    G
+                </button>
+                <button class="btn btn-outline-secondary col parametro">
+                    H
+                </button>
+            </div>
+            <div class="row gap-2 mt-1">
+                <button class="btn btn-outline-secondary col parametro">
+                    I
+                </button>
+                <button class="btn btn-outline-secondary col parametro">
+                    J
+                </button>
+                <button class="btn btn-outline-secondary col parametro">
+                    K
+                </button>
+                <button class="btn btn-outline-secondary col parametro">
+                    L
+                </button>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div class="row gap-2">
+                <button class="btn btn-secondary col condicao">^</button>
+                <button class="btn btn-secondary col condicao">∨</button>
+                <button class="btn btn-secondary col condicao">⊕</button>
+            </div>
+            <div class="row gap-2 mt-1">
+                <button class="btn btn-secondary col condicao">→</button>
+                <button class="btn btn-secondary col condicao">↔</button>
+                <button id="resultado" onclick="GeraTabelaVerdade()" class="btn btn-success col">
+                    RES
+                </button>
+                <a id="anchor-scroll" class="d-none" href="#card-resultado"></a>
+            </div>
+        </div>
+    </div>
+</div>

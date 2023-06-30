@@ -28,18 +28,20 @@ body {
   top: 0;
 }
 
-#btnInfo {
-  right: -2rem;
-}
-
-tr > td:last-child {
+#table-resposta tr > td:last-child {
   font-weight: bold;
   background-color: #e2e3e5;
   border: 1px solid #cbccce;
 }
 
-th {
+#table-resposta th {
   background-color: #e2e3e5;
+}
+
+#table-info td {
+  border-collapse: collapse;
+  border: 1px solid #cbccce;
+  text-align: center;
 }
 
 .nav-pills {
@@ -55,6 +57,12 @@ th {
 
 .nav-pills .nav-link {
   background-color: #0d6efd;
+  color: white;
+}
+
+.nav-pills .nav-link.recurso,
+.nav-link.disabled {
+  background-color: #cbccce;
   color: white;
 }
 
