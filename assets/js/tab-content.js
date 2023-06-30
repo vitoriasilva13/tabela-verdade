@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(function (body) {
       document.getElementById("pills-main").innerHTML = body;
+      Inicio(); //Instancia botões em tabela-verdade.js
     });
   fetch("assets/tab-content/info.html")
     .then(function (response) {

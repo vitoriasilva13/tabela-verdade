@@ -13,7 +13,7 @@ const RegexNegacoesParenteses = /~\(([^)]+)\)/g;
 const RegexParentesesInterno = /\(([^()]*)\)/;
 //#endregion
 
-document.addEventListener("DOMContentLoaded", () => {
+function Inicio() {
   campoExpressao = document.getElementById("expressao");
 
   //#region AddEvents
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       element.addEventListener("click", AdicionaParenteses)
     );
   //#endregion
-});
+}
 
 //#region Ações Tecladas
 function AdicionaPreposicao() {
