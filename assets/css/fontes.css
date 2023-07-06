@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Carme&family=Raleway:wght@800&display=swap");
+
+body {
+  font-family: "Carme", sans-serif;
+}
+
+h4,
+h5 {
+  font-family: "Raleway", sans-serif;
+}
