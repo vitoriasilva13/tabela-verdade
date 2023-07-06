@@ -1,8 +1,18 @@
 # Gerador de Tabela Verdade [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-Um gerador de tabela verdade feito com Javascript, HTML e CSS. Acesse em: https://vitoriasilva13.github.io/tabela-verdade/
 
-## Ajustes e Melhorias
-Novos recursos, correção de bugs e otimizações de desempenho estão em planejamento. O projeto está em constante melhoria.
+<hr>
+
+> Status do Projeto: Em desenvolvimento :warning:
+
+<hr>
+
+<div>
+  <img align="center" alt="Javascript" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
+  <img align="center" alt="HTML5" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
+  <img align="center" alt="CSS3" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />
+  <img align="center" alt="Bootstrap" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" />
+  <img align="center" alt="Visual Studio Code" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" />
+</div>
 
 ## Uso
 1. Informe a expressão lógica desejada.
