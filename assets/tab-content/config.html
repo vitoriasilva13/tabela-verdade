@@ -6,4 +6,56 @@
             Mostrar resultados com '0' e '1'
         </label>
     </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" value="" id="checkbox-equiv" />
+        <label class="form-check-label small muted" for="checkbox-equiv">
+            Destacar equivalências
+        </label>
+    </div>
+    <hr>
+    <table id="table-info" class="w-100 table table-hover table-sm table-bordered">
+        <thead class="table-secondary header">
+            <td colspan="2">Operadores</td>
+        </thead>
+        <tr>
+            <td>~</td>
+            <td>negação</td>
+        </tr>
+        <tr>
+            <td>^</td>
+            <td>conjunção</td>
+        </tr>
+        <tr>
+            <td>∨</td>
+            <td>disjunção</td>
+        </tr>
+        <tr>
+            <td>→</td>
+            <td>condicional</td>
+        </tr>
+        <tr>
+            <td>↔</td>
+            <td>bicondicional</td>
+        </tr>
+        <tr>
+            <td>⊕</td>
+            <td>disjunção exclusiva</td>
+        </tr>
+    </table>
+    <button class="btn btn-primary w-100"
+        title="Defina os símbolos que serão utilizados como operadores pela calculadora." data-bs-toggle="modal"
+        data-bs-target="#modalOperadoresConfig">Definir Operadores</button>
+</div>
+<div class="modal fade" id="modalOperadoresConfig">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
 </div>
